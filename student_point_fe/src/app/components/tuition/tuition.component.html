@@ -1,0 +1,99 @@
+<div class="wrapper">
+    <app-navbar></app-navbar>
+    <app-sidebar></app-sidebar>
+
+    <div class="content-wrapper">
+
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1 class="m-0">Học phí</h1>
+                    </div>
+                    <!-- /.col -->
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a [routerLink]="['']">Home</a></li>
+                            <li class="breadcrumb-item active">Học phí</li>
+                        </ol>
+                    </div>
+                    <!-- /.col -->
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.container-fluid -->
+        </div>
+
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">Danh sách các học kỳ</h3>
+
+                                <div class="card-tools">
+                                    <div class="input-group input-group-sm" style="width: 150px;">
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body table-responsive p-0">
+                                <table class="table table-hover table-bordered text-nowrap">
+                                    <thead>
+                                        <tr>
+                                            <th>STT</th>
+                                            <th>Niên học học kỳ</th>
+                                            <th>Học phí chưa giảm</th>
+                                            <th>Miễn giảm</th>
+                                            <th>Phải thu</th>
+                                            <th>Đã thu</th>
+                                            <th>Còn nợ</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let item of semesterOfStudentRes.data; index as i">
+                                            <td>{{i}}</td>
+                                            <td>{{item.semester.name + ' ' + item.semester.year}}</td>
+                                            <td>{{item.rootTuition.toLocaleString().replaceAll(",",
+                                                ".")}} đ</td>
+                                            <td>{{item.exemptions.toLocaleString().replaceAll(",",
+                                                ".")}} đ</td>
+                                            <td>{{item.receivable.toLocaleString().replaceAll(",",
+                                                ".")}} đ</td>
+                                            <td>{{item.collected.toLocaleString().replaceAll(",",
+                                                ".")}} đ</td>
+                                            <td>{{item.owed.toLocaleString().replaceAll(",",
+                                                ".")}} đ</td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td></td>
+                                            <td>Tổng</td>
+                                            <td>{{totalTuition.rootTuition.toLocaleString().replaceAll(",",
+                                                ".")}} đ</td>
+                                            <td>{{totalTuition.exemptions.toLocaleString().replaceAll(",",
+                                                ".")}} đ</td>
+                                            <td>{{totalTuition.receivable.toLocaleString().replaceAll(",",
+                                                ".")}} đ</td>
+                                            <td>{{totalTuition.collected.toLocaleString().replaceAll(",",
+                                                ".")}} đ</td>
+                                            <td>{{totalTuition.owed.toLocaleString().replaceAll(",",
+                                                ".")}} đ</td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                        <!-- /.card -->
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <app-footer></app-footer>
+</div>

@@ -1,0 +1,80 @@
+<div>
+    <form nz-form nzLayout="vertical" [formGroup]="validateForm">
+        <div nz-row nzGutter="16">
+            <div nz-col nzSm="12">
+                <nz-form-item>
+                    <nz-form-label>Mã sinh viên</nz-form-label>
+                    <nz-form-control>
+                        <input nz-input name="studentCode" [value]="student.studentCode" readonly/>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+            <div nz-col nzSm="12">
+                <nz-form-item>
+                    <nz-form-label>Họ tên</nz-form-label>
+                    <nz-form-control>
+                        <input nz-input name="fullName" [value]="student.fullName" readonly/>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+        </div>
+        <div nz-row nzGutter="16">
+            <div nz-col nzSm="12">
+                <nz-form-item>
+                    <nz-form-label>Mã môn học</nz-form-label>
+                    <nz-form-control>
+                        <input nz-input name="classCode" [value]="subjectOfStudent.subject.subjectCode" readonly/>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+            <div nz-col nzSm="12">
+                <nz-form-item>
+                    <nz-form-label>Tên môn học</nz-form-label>
+                    <nz-form-control>
+                        <input nz-input name="classCode" [value]="subjectOfStudent.subject.name" readonly/>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+        </div>
+        <div nz-row nzGutter="16">
+            <div nz-col nzSm="12">
+                <nz-form-item>
+                    <nz-form-label nzRequired>Điểm chuyên cần</nz-form-label>
+                    <nz-form-control nzErrorTip="Nhập đầy đủ thông tin!">
+                        <input nz-input type="number" formControlName="attendancePoint" placeholder="Điểm chuyên cần" />
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+            <div nz-col nzSm="12">
+                <nz-form-item>
+                    <nz-form-label nzRequired>Điểm kiểm tra</nz-form-label>
+                    <nz-form-control nzErrorTip="Nhập đầy đủ thông tin!">
+                        <input nz-input type="number" formControlName="testPoint" placeholder="Điểm kiểm tra" />
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+        </div>
+        <div nz-row nzGutter="16">
+            <div nz-col nzSm="12">
+                <nz-form-item>
+                    <nz-form-label nzRequired>Điểm thực hành</nz-form-label>
+                    <nz-form-control nzErrorTip="Nhập đầy đủ thông tin!">
+                        <input nz-input type="number" formControlName="practicePoint" placeholder="Điểm thực hành" />
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+            <div nz-col nzSm="12">
+                <nz-form-item>
+                    <nz-form-label nzRequired>Điểm thi</nz-form-label>
+                    <nz-form-control nzErrorTip="Nhập đầy đủ thông tin!">
+                        <input nz-input type="number" formControlName="examPoint" placeholder="Điểm thi" />
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+        </div>
+    </form>
+</div>
+<div *nzModalFooter>
+    <button nz-button nzType="default" (click)="destroyModal()">Hủy</button>
+    <button nz-button nzType="primary" (click)="updatePoint()">Cập nhật</button>
+</div>

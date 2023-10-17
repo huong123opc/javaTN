@@ -1,0 +1,89 @@
+<div class="wrapper">
+    <app-navbar></app-navbar>
+    <app-admin-sidebar></app-admin-sidebar>
+
+    <div class="content-wrapper">
+
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1 class="m-0">Quản lý lịch học</h1>
+                    </div>
+                    <!-- /.col -->
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a [routerLink]="['']">Trang chủ</a></li>
+                            <li class="breadcrumb-item active">Quản lý lịch học</li>
+                        </ol>
+                    </div>
+                    <!-- /.col -->
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.container-fluid -->
+        </div>
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Danh sách lịch học</h3>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <button nz-button nzType="primary" (click)="showModalCreateSchedule()">Thêm mới</button>
+                    <br />
+                    <br />
+                    <nz-table nzShowSizeChanger nzBordered="true" #filterTable [nzData]="listOfDisplayData"
+                        [nzFrontPagination]="true" [nzLoading]="loading" [nzTotal]="total" [nzPageSize]="pageSize"
+                        [nzPageIndex]="pageIndex">
+                        <thead>
+                            <tr>
+                                <th>STT</th>
+                                <th *ngFor="let column of listOfColumns; trackBy: trackByName"
+                                    [(nzSortOrder)]="column.sortOrder" [nzSortFn]="column.sortFn"
+                                    [nzFilters]="column.listOfFilter" [nzFilterFn]="column.filterFn"
+                                    [nzShowFilter]="column.listOfFilter.length > 0">
+                                    {{ column.name }}
+                                </th>
+                                <th>Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let data of filterTable.data; let i= index">
+                                <td>{{i}}</td>
+                                <td>{{ data.subjectDto.subjectCode }}</td>
+                                <td>{{ data.subjectDto.name }}</td>
+                                <td>{{ data.place }}</td>
+                                <td>{{ data.startTime | date: 'dd-MM-yyyy' }}</td>
+                                <td>{{ data.startTime | date: 'HH:mm' }} - {{ data.finishTime | date: 'HH:mm' }}</td>
+                                <td>{{ data.lecturer }}</td>
+                                <td>{{ data.emailLecturer == "" || data.emailLecturer == undefined
+                                     ? "Chưa cập nhật" : data.emailLecturer}}</td>
+                                <td [nzRight]="false">
+                                    <a (click)="editSchedule(data.id)"><span nz-icon
+                                            nzType="edit" nzTheme="outline"></span></a>
+                                    <nz-divider nzType="vertical"></nz-divider>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </nz-table>
+                    <nz-dropdown-menu #menu="nzDropdownMenu">
+                        <div class="ant-table-filter-dropdown">
+                            <div class="search-box">
+                                <input type="text" nz-input placeholder="Search name" [(ngModel)]="searchValue" />
+                                <button nz-button nzSize="small" nzType="primary" (click)="search()"
+                                    class="search-button">Search</button>
+                                <button nz-button nzSize="small" (click)="reset()">Reset</button>
+                            </div>
+                        </div>
+                    </nz-dropdown-menu>
+                </div>
+            </div>
+        </section>
+        <!-- /.content -->
+    </div>
+
+    <app-footer></app-footer>
+</div>

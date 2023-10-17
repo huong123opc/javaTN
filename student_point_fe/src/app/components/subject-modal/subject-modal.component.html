@@ -1,0 +1,46 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <h4 class="modal-title">Subject</h4>
+        <button type="button" class="close" aria-label="Close" (click)="activeModal.close()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+    </div>
+    <div class="modal-body">
+        <div class="card-body table-responsive p-0">
+            <table class="table table-hover table-bordered text-nowrap">
+                <thead>
+                    <tr>
+                        <th>Mã môn</th>
+                        <th>Tên môn</th>
+                        <th>Số TC</th>
+                        <th>Điểm CC (10%)</th>
+                        <th>Điểm KT (20%)</th>
+                        <th>Điểm TH (20%)</th>
+                        <th>Điểm thi (50%)</th>
+                        <th>Điểm TK (10)</th>
+                        <th>Điểm TK (CH)</th>
+                        <th>Kết quả</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{subjectOfStudent.subject.subjectCode}}</td>
+                        <td>{{subjectOfStudent.subject.name}}</td>
+                        <td>{{subjectOfStudent.subject.credit}}</td>
+                        <td>{{subjectOfStudent.attendancePoint | number:'1.1-1'}}</td>
+                        <td>{{subjectOfStudent.testPoint | number:'1.1-1'}}</td>
+                        <td>{{subjectOfStudent.practicePoint | number:'1.1-1'}}</td>
+                        <td>{{subjectOfStudent.examPoint | number:'1.1-1'}}</td>
+                        <td>{{subjectOfStudent.finalPoint | number:'1.1-1'}}</td>
+                        <td>{{subjectOfStudent.letterGrade}}</td>
+                        <td>{{subjectOfStudent.letterGrade == "F" ? "X" : "Đạt"}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="modal-footer justify-content-between">
+        <button type="button" class="btn btn-default" (click)="activeModal.close()">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+    </div>
+</div>

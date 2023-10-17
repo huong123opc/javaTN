@@ -1,0 +1,90 @@
+<div class="wrapper">
+    <app-navbar></app-navbar>
+    <app-sidebar></app-sidebar>
+
+    <div class="content-wrapper">
+
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1 class="m-0">Thời khóa biểu</h1>
+                    </div>
+                    <!-- /.col -->
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a [routerLink]="['']">Trang chủ</a></li>
+                            <li class="breadcrumb-item active">Thời khóa biểu</li>
+                        </ol>
+                    </div>
+                    <!-- /.col -->
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.container-fluid -->
+        </div>
+
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row text-center">
+                    <div class="col-md-4">
+                        <div class="btn-group">
+                            <div class="btn btn-primary" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate"
+                                (viewDateChange)="closeOpenMonthViewDay()">
+                                Trước
+                            </div>
+                            <div class="btn btn-outline-secondary" mwlCalendarToday [(viewDate)]="viewDate">
+                                Hôm nay
+                            </div>
+                            <div class="btn btn-primary" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate"
+                                (viewDateChange)="closeOpenMonthViewDay()">
+                                Sau
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):'vi' }}</h3>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="btn-group">
+                            <div class="btn btn-primary" (click)="setView(CalendarView.Month)"
+                                [class.active]="view === CalendarView.Month">
+                                Tháng
+                            </div>
+                            <div class="btn btn-primary" (click)="setView(CalendarView.Week)"
+                                [class.active]="view === CalendarView.Week">
+                                Tuần
+                            </div>
+                            <div class="btn btn-primary" (click)="setView(CalendarView.Day)"
+                                [class.active]="view === CalendarView.Day">
+                                Ngày
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div [ngSwitch]="view">
+                    <mwl-calendar-month-view *ngSwitchCase="CalendarView.Month" [viewDate]="viewDate" [events]="events" [locale]="'vi'"
+                        [refresh]="refresh" [activeDayIsOpen]="activeDayIsOpen" (dayClicked)="dayClicked($event.day)"
+                        (eventClicked)="handleEvent('Clicked', $event.event)"
+                        (eventTimesChanged)="eventTimesChanged($event)">
+                    </mwl-calendar-month-view>
+                    <mwl-calendar-week-view *ngSwitchCase="CalendarView.Week" [viewDate]="viewDate" [events]="events" [locale]="'vi'"
+                        [refresh]="refresh" (eventClicked)="handleEvent('Clicked', $event.event)"
+                        (eventTimesChanged)="eventTimesChanged($event)">
+                    </mwl-calendar-week-view>
+                    <mwl-calendar-day-view *ngSwitchCase="CalendarView.Day" [viewDate]="viewDate" [events]="events" [locale]="'vi'"
+                        [refresh]="refresh" (eventClicked)="handleEvent('Clicked', $event.event)"
+                        (eventTimesChanged)="eventTimesChanged($event)">
+                    </mwl-calendar-day-view>
+                </div>
+
+                <!-- Everything you see below is just for the demo, you don't need to include it in your app -->
+
+
+            </div>
+        </section>
+    </div>
+
+    <app-footer></app-footer>
+</div>

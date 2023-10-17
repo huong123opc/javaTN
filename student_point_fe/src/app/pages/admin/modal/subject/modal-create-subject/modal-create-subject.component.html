@@ -1,0 +1,36 @@
+<div>
+    <form nz-form nzLayout="vertical" [formGroup]="validateForm">
+        <div nz-row nzGutter="16">
+            <div nz-col nzSm="12">
+                <nz-form-item>
+                    <nz-form-label nzRequired>Mã học phần</nz-form-label>
+                    <nz-form-control nzErrorTip="Nhập đầy đủ thông tin!">
+                        <input nz-input formControlName="subjectCode" placeholder="Mã học phần" />
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+            <div nz-col nzSm="12">
+                <nz-form-item>
+                    <nz-form-label nzRequired>Số tín chỉ</nz-form-label>
+                    <nz-form-control nzErrorTip="Nhập đầy đủ thông tin!">
+                        <input nz-input type="number" formControlName="credit" placeholder="Số tín chỉ" />
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+        </div>
+        <div nz-row nzGutter="16">
+            <div nz-col nzSm="22">
+                <nz-form-item>
+                    <nz-form-label nzRequired>Tên học phần</nz-form-label>
+                    <nz-form-control nzErrorTip="Nhập đầy đủ thông tin!">
+                        <input nz-input formControlName="name" placeholder="Tên học phần" />
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+        </div>
+    </form>
+</div>
+<div *nzModalFooter>
+    <button nz-button nzType="default" (click)="destroyModal()">Hủy</button>
+    <button nz-button nzType="primary" (click)="createSubject()">Thêm mới</button>
+</div>
